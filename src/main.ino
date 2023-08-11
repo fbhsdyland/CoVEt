@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <Tone.h>
 
-#define JOYSTICK_PIN A0
+#define JOYSTICK_PIN A0 
 #define BUTTON_PIN 2
 #define SPEAKER_PIN 9
 
@@ -18,7 +18,7 @@ void setup() {
   pinMode(BUTTON_PIN, INPUT_PULLUP);
   tone1.begin(SPEAKER_PIN);
   
-  Serial.begin(9600); // start serial communication on 9600 baud
+  Serial.begin(9600); // start serial communication
 }
 
 void loop() {
@@ -27,7 +27,7 @@ void loop() {
   
   if (buttonVal == LOW) {
     buttonState = !buttonState;
-    delay(200); // debounce
+    delay(200); // debounce to prevent weird on/off bugs; we could use a resitor chain insted which would be more affective.
   }
 
   if (buttonState) {
@@ -37,7 +37,7 @@ void loop() {
     tone1.stop();
   }
 
-  Serial.println(joystickVal); // prints joystick position to serial monitor
+  Serial.println(joystickVal); // prints joystick position
 }
 
 
